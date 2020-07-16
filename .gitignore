@@ -1,0 +1,8 @@
+.DS_Store
+*.tar
+*.pdf
+*.npz
+.idea/*
+*.ckpt
+*.pth
+*.weights

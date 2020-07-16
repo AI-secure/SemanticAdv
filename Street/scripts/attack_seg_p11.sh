@@ -1,0 +1,27 @@
+python adv_seg_mask2image.py \
+--dataroot datasets/p11/ \
+--dataloader cityscape_adv \
+--name pretrained_mask2image_city \
+--model segAdv \
+--no_instance \
+--resize_or_crop select_region \
+--loadSize 512 \
+--fineSize 256 \
+--contextMargin 3.0 \
+--prob_bg 0 \
+--label_nc 35 \
+--output_nc 3 \
+--load_image \
+--batchSize 1 \
+--nThreads 2 \
+--norm instance \
+--n_downsample_global 4 \
+--netG global_twostream \
+--min_box_size 128 \
+--which_encoder ctx_label \
+--use_skip \
+--use_output_gate \
+--phase val \
+--how_many 200 \
+--gpu_ids 0 \
+--random_crop 0
