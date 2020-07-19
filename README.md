@@ -44,14 +44,14 @@ Please follow the instructions to run the code.
  ```
  cd Face
  bash scripts/download_pretrained_face_model.sh
- python verification_attack.py
- python verification_attack_untarget.py
+ bash scripts/verification_attack_demo.sh
+ bash scripts/verification_attack_untarget_demo.sh
  ```
  
 Run the following lines to reproduce results in the ECCV paper.
  ```
  bash scripts/download_all_aligned_images.sh
- python attack_paper_reproduction.py
+ bash scripts/verification_attack_reproduction_e3.sh
  ```
  
 #### reference repo
