@@ -1,6 +1,5 @@
 Test Environment:
-python3.6
-pytorch0.4.1
+pytorch 0.4.1
 
 Default Test:
 python verification_attack.py
