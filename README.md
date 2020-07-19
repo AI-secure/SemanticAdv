@@ -20,7 +20,7 @@ Please follow the instructions to run the code.
                                       lambda_for_tv_loss,
                                       threshold) 
  
- edit_final, adv_loss, tv_loss = adversary(G_dec=decoder,
+ adv_images, adv_loss, tv_loss = adversary(G_dec=decoder,
                                            emb1=feature_map1,
                                            emb2=feature_map2,
                                            model=target_model,
@@ -29,7 +29,7 @@ Please follow the instructions to run the code.
                                            targeted=True)
  ```
 
-### test environment
+### Test Environment
  ```
  pytorch==1.1.0
  torchvision==0.3.0
@@ -48,7 +48,7 @@ Please follow the instructions to run the code.
  python verification_attack_untarget.py
  ```
  
-Run the following lines to replicate results in the ECCV paper.
+Run the following lines to reproduce results in the ECCV paper.
  ```
  bash scripts/download_all_aligned_images.sh
  python attack_paper_reproduction.py

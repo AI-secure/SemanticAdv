@@ -40,6 +40,8 @@ class Celeba_Solver(object):
         # Load the trained generator.
         self.restore_model(self.test_iters)
 
+        self.layer = config.interp_layer
+
     def build_model(self):
         """Create a generator and a discriminator."""
         if self.dataset in ['CelebA', 'RaFD']:
@@ -98,98 +100,38 @@ class Celeba_Solver(object):
 
         return denormed_adv
 
-    def h1(self, delta, x_real, c_org):
+    def enc(self, delta, x_real, c_org):
         c_trg = (c_org - delta * (c_org - 0.5) * 2).cuda()
-        # c_trg = torch.clamp(c_org + delta, 0, 1)
-
-        # Translate images.
-        feature = self.G.h1(x_real, c_trg)
+        if self.layer == '0':
+            feature = self.G.h0(x_real, c_trg)
+        elif self.layer == '1':
+            feature = self.G.h1(x_real, c_trg)
+        elif self.layer == '2':
+            feature = self.G.h2(x_real, c_trg)
+        elif self.layer == '01':
+            feature = self.G.h01(x_real, c_trg)
+        elif self.layer == '02':
+            feature = self.G.h02(x_real, c_trg)
+        elif self.layer == '03':
+            feature = self.G.h03(x_real, c_trg)
 
         return feature
 
-    def f1(self, feature):
+    def dec(self, feature):
 
-        out = self.G.f1(feature)
-        denormed_adv = self.denorm(out)
+        if self.layer == '0':
+            out = self.G.f0(feature)
+        elif self.layer == '1':
+            out = self.G.f1(feature)
+        elif self.layer == '2':
+            out = self.G.f2(feature)
+        elif self.layer == '01':
+            out = self.G.f01(feature)
+        elif self.layer == '02':
+            out = self.G.f02(feature)
+        elif self.layer == '03':
+            out = self.G.f03(feature)
 
-        return denormed_adv
-
-    def h2(self, delta, x_real, c_org):
-        c_trg = (c_org - delta * (c_org - 0.5) * 2).cuda()
-        # c_trg = torch.clamp(c_org + delta, 0, 1)
-
-        # Translate images.
-        feature = self.G.h2(x_real, c_trg)
-
-        return feature
-
-    def f2(self, feature):
-
-        out = self.G.f2(feature)
-        denormed_adv = self.denorm(out)
-
-        return denormed_adv
-
-    def h0(self, delta, x_real, c_org):
-        c_trg = (c_org - delta * (c_org - 0.5) * 2).cuda()
-        # c_trg = torch.clamp(c_org + delta, 0, 1)
-
-        # Translate images.
-        feature = self.G.h0(x_real, c_trg)
-
-        return feature
-
-    def f0(self, feature):
-
-        out = self.G.f0(feature)
-        denormed_adv = self.denorm(out)
-
-        return denormed_adv
-
-    def h01(self, delta, x_real, c_org):
-        c_trg = (c_org - delta * (c_org - 0.5) * 2).cuda()
-        # c_trg = torch.clamp(c_org + delta, 0, 1)
-
-        # Translate images.
-        feature = self.G.h01(x_real, c_trg)
-
-        return feature
-
-    def f01(self, feature):
-
-        out = self.G.f01(feature)
-        denormed_adv = self.denorm(out)
-
-        return denormed_adv
-
-    def h02(self, delta, x_real, c_org):
-        c_trg = (c_org - delta * (c_org - 0.5) * 2).cuda()
-        # c_trg = torch.clamp(c_org + delta, 0, 1)
-
-        # Translate images.
-        feature = self.G.h02(x_real, c_trg)
-
-        return feature
-
-    def f02(self, feature):
-
-        out = self.G.f02(feature)
-        denormed_adv = self.denorm(out)
-
-        return denormed_adv
-
-    def h03(self, delta, x_real, c_org):
-        c_trg = (c_org - delta * (c_org - 0.5) * 2).cuda()
-        # c_trg = torch.clamp(c_org + delta, 0, 1)
-
-        # Translate images.
-        feature = self.G.h03(x_real, c_trg)
-
-        return feature
-
-    def f03(self, feature):
-
-        out = self.G.f03(feature)
         denormed_adv = self.denorm(out)
 
         return denormed_adv
