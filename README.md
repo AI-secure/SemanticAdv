@@ -29,26 +29,39 @@ Please follow the instructions to run the code.
                                            targeted=True)
  ```
 
-### Test Environment
+### Set Environment
  ```
- pytorch==1.1.0
- torchvision==0.3.0
- scipy==1.2.1
- pillow=6.1.0
- dominate=2.4.0
- dill=0.3.1.1
- scikit-image=0.16.2
+ bash scripts/set_env.sh
+ 
+ # Tested in the below environment
+ # pytorch==1.1.0
+ # torchvision==0.3.0
+ # scipy==1.2.1
+ # pillow=6.1.0
+ # dominate=2.4.0
+ # scikit-image=0.16.2
  ```
 
-### Run Face Demo
+### Attack for Face Verification
+
+- Enter the folder of face verification
  ```
  cd Face
+ ```
+- Download the pre-trained generative model and verification model
+ ```
  bash scripts/download_pretrained_face_model.sh
+ ```
+- Run targeted attack demo
+ ```
  bash scripts/verification_attack_demo.sh
+ ```
+- Run untargeted attack demo
+ ```
  bash scripts/verification_attack_untarget_demo.sh
  ```
  
-Run the following lines to reproduce results in the ECCV paper.
+- Run the following lines to reproduce results in the ECCV paper
  ```
  bash scripts/download_all_aligned_images.sh
  bash scripts/verification_attack_reproduction_e3.sh
@@ -62,13 +75,22 @@ https://github.com/yunjey/stargan
 verification model  
 https://github.com/yl-1993/hfsoftmax 
 
-### Run Street Demo
+### Attack for Semantic Segmentation
+
+- Enter the folder of semantic segmentation
  ```
  cd Street
+ ```
+- Download the pre-trained generative model and segmentation model
+ ```
  bash scripts/download_pretrained_mask2image_city.sh
  bash scripts/download_pretrained_seg_model.sh
+ ```
+- Run targeted attack demo
+ ```
  bash scripts/attack_seg_p11.sh
  ```
+ 
 #### reference repo
 
 generative model  
