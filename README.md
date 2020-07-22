@@ -30,6 +30,8 @@ Please follow the instructions to run the code.
  ```
 
 ### Set Environment
+
+If you are using Conda and CUDA 10.0, run the code below directly. Otherwise, modify the corresponding lines to install PyTorch and torchvision following the [official instructions](https://pytorch.org/).
  ```
  bash scripts/set_env.sh
  
