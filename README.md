@@ -62,12 +62,16 @@ If you are using Conda and CUDA 10.0, run the code below directly. Otherwise, mo
  ```
  bash scripts/verification_attack_untarget_demo.sh
  ```
- 
+
+<img src="figs/figure_attack_compare.png" width="800px"/>
+
 - Run the following lines to reproduce results in the ECCV paper
  ```
  bash scripts/download_all_aligned_images.sh
  bash scripts/verification_attack_reproduction_e3.sh
  ```
+ 
+<img src="figs/figure_single_attr_attack.png" width="800px"/>
  
 #### reference repo
 
@@ -92,6 +96,8 @@ https://github.com/yl-1993/hfsoftmax
  ```
  bash scripts/attack_seg_p11.sh
  ```
+ 
+<img src="figs/figure_attack_cityscape.png" width="800px"/>
  
 #### reference repo
 
