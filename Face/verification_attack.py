@@ -264,7 +264,8 @@ if __name__ == '__main__':
     parser.add_argument('--dataset',
                         type=str,
                         default='CelebA',
-                        choices=['CelebA'])
+                        choices=['CelebA'],
+                        help='which dataset to use, only support CelebA currently')
     parser.add_argument('--c2_dim',
                         type=int,
                         default=8,
@@ -287,35 +288,43 @@ if __name__ == '__main__':
                         default=200000,
                         help='test model from this step')
     # Miscellaneous.
-    parser.add_argument('--num_workers', type=int, default=1)
+    parser.add_argument('--num_workers', type=int, default=1, help='number of workers')
     # Directories.
     parser.add_argument('--celeba_image_dir',
                         type=str,
-                        default='./aligned_id_divied_imgs/')
+                        default='./aligned_id_divied_imgs/',
+                        help='path of face images')
     parser.add_argument('--attr_path',
                         type=str,
-                        default='./list_attr_celeba.txt')
+                        default='./list_attr_celeba.txt',
+                        help='path of face attributes')
     parser.add_argument('--model_save_dir',
                         type=str,
-                        default='./pretrain_models/')
+                        default='./pretrain_models/',
+                        help='path of pretrained stargan model')
     # Face Recognition
-    parser.add_argument('--feature_dim', default=256, type=int)
+    parser.add_argument('--feature_dim', default=256, type=int,
+                        help='feature dimensions for face verification')
     parser.add_argument('--load_path',
                         type=str,
-                        default='./pretrain_models/res101_softmax.pth.tar')
+                        default='./pretrain_models/res101_softmax.pth.tar',
+                        help='path of pretrained face verification model')
     # Please don't change above setting.
 
     # You can change below setting.
-    parser.add_argument('--max_iteration', type=int, default=200)
-    parser.add_argument('--lr', type=float, default=0.05)
-    parser.add_argument('--tv_lambda', type=float, default=0.01)
-    parser.add_argument('--threshold', type=float, default=1.244)   # 1.244 for fpr=10e-3，0.597 for fpr=10e-4
+    parser.add_argument('--max_iteration', type=int, default=200,
+                        help='maximum iterations')
+    parser.add_argument('--lr', type=float, default=0.05,
+                        help='learning rate')
+    parser.add_argument('--tv_lambda', type=float, default=0.01, help='lambda for tv loss')
+    parser.add_argument('--threshold', type=float, default=1.244,
+                        help='threshold for face verification, 1.244 for fpr=10e-3，0.597 for fpr=10e-4')
 
     parser.add_argument('--save_path', type=str, default='results/', help='path to save the results')
     parser.add_argument('--interp_layer', type=str, default='0', choices=['0', '1', '2', '01', '02'], help='which layer to interpolate')
     parser.add_argument('--test_threshold', type=float, default=0)
-    parser.add_argument('--untargeted', action='store_true')
-    parser.add_argument('--data_mode', type=str, default='demo', choices=['demo', 'all'])
+    parser.add_argument('--untargeted', action='store_true', help='targeted or untargeted')
+    parser.add_argument('--data_mode', type=str, default='demo', choices=['demo', 'all'], help='demo mode for simple demo, all mode for paper reproduction')
     parser.add_argument('--adv_attribute', type=str, default='all', choices=[
                             'Blond_Hair', 'Wavy_Hair', 'Young', 'Eyeglasses',
                             'Heavy_Makeup', 'Rosy_Cheeks', 'Chubby',

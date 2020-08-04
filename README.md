@@ -62,6 +62,8 @@ If you are using Conda and CUDA 10.0, run the code below directly. Otherwise, mo
  ```
  bash scripts/verification_attack_untarget_demo.sh
  ```
+ 
+See [Face/README.md](Face/README.md) for more explaination of attack for face verification. All options are in the [Face/verification_attack.py](Face/verification_attack.py).
 
 <img src="figs/figure_attack_compare.png" width="800px"/>
 
